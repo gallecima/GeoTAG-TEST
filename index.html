@@ -37,16 +37,53 @@
 	  	});
 	  
 		var watchID = null;
+		var marker = null;
 	  	// Try HTML5 geolocation.
 	  	if (navigator.geolocation) {
 		
 		
+
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude};
+			
+				var lat = position.coords.latitude;
+				var lng = position.coords.longitude;
+		
+				marker = new google.maps.Marker({
+					position: myLatLng,
+					map: map,
+					title: 'Hello World!'
+				});
+
+				map.setCenter(myLatLng);
+				
+				for (var fence in geoFences) {
+					// Add the circle for this city to the map.
+					var fenceCircle = new google.maps.Circle({
+					  strokeColor: '#FF0000',
+					  strokeOpacity: 0.8,
+					  strokeWeight: 2,
+					  fillColor: '#FF0000',
+					  fillOpacity: 0.35,
+					  map: map,
+					  center: geoFences[fence].center,
+					  radius: Math.sqrt(50000)
+					});
+				}								
+			});			
+			
+			
 			var options = { timeout: 10000 };
         	watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);		
 						
 			function onSuccess(position) {
 				
+					var newLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+					marker.setPosition(newLatLng);
+					
+					/*
 					var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude};
+					
 					
 					var marker = new google.maps.Marker({
 						position: myLatLng,
@@ -55,20 +92,9 @@
 					});
 	
 					map.setCenter(myLatLng);
+					*/
 				
-				  	for (var fence in geoFences) {
-						// Add the circle for this city to the map.
-						var fenceCircle = new google.maps.Circle({
-						  strokeColor: '#FF0000',
-						  strokeOpacity: 0.8,
-						  strokeWeight: 2,
-						  fillColor: '#FF0000',
-						  fillOpacity: 0.35,
-						  map: map,
-						  center: geoFences[fence].center,
-						  radius: Math.sqrt(50000)
-						});
-				  	}
+
 				
 			}
 			
