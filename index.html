@@ -28,11 +28,10 @@
             <td class="long-view"></td>
         </tr>
     </table>
-    <input type="button" id="boton" style="widows:100%" value="UPDATE"</body>
+    <input type="button" id="boton" style="widows:100%" value="UPDATE">
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script language="javascript">
 	$(document).ready(function(e) {
-        $("#boton").click(function(){
 
 			function disp(pos) {
 			
@@ -43,7 +42,7 @@
 			}			
 			
 			navigator.geolocation.getCurrentPosition(disp);			
-		})
+
     });
 	</script>
   </body>
