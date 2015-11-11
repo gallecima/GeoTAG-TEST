@@ -22,38 +22,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9tbmKTdz0kzQmUBVNn2jNTwoVfCUhiN0&libraries=geometry&callback=initMap" async defer></script>
 	<script>
 
-
-            var id = 1, dialog;
-
-            callback = function () {
-                cordova.plugins.notification.local.getIds(function (ids) {
-                    showToast('IDs: ' + ids.join(' ,'));
-                });
-            };
-
-            showToast = function (text) {
-                setTimeout(function () {
-                    if (device.platform != 'windows') {
-                        window.plugins.toast.showShortBottom(text);
-                    } else {
-                        showDialog(text);
-                    }
-                }, 100);
-            };
-
-            showDialog = function (text) {
-                if (dialog) {
-                    dialog.content = text;
-                    return;
-                }
-
-                dialog = new Windows.UI.Popups.MessageDialog(text);
-
-                dialog.showAsync().done(function () {
-                    dialog = null;
-                });
-            };
-
 		var geoFences = {
 		  shopping: {
 			center: {lat: -24.7813654, lng: -65.4026706},
@@ -78,7 +46,6 @@
 	  	if (navigator.geolocation) {
 		
 		
-			showToast("loaded");
 			navigator.geolocation.getCurrentPosition(function(position) {
 				var myLatLng = {lat: position.coords.latitude, lng: position.coords.longitude};
 			
@@ -137,7 +104,9 @@
 
 						if(distancia<270)
 						{
-							showToast("en punto");
+
+
+
 						}
 
 					}								
