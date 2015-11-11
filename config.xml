@@ -30,7 +30,7 @@
 	<gap:splash src="splash.png" gap:platform="android" gap:density="xxhdpi" />
 
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.0.0" />
-	<gap:plugin name="de.appplant.cordova.plugin.local-notification" />
+	<gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.7.0" />
 	
 	<gap:plugin name="org.apache.cordova.geolocation" />
 	
