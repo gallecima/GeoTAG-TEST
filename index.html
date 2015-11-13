@@ -22,6 +22,13 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9tbmKTdz0kzQmUBVNn2jNTwoVfCUhiN0&libraries=geometry&callback=initMap" async defer></script>
 	<script>
 
+		var push = PushNotification.init({ "android": {"senderID": "12345679"},
+			 "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
+	
+		push.on('registration', function(data) {
+			alert(data.registrationId);
+		});	
+
 		var geoFences = {
 		  shopping: {
 			center: {lat: -24.7813654, lng: -65.4026706},
@@ -30,7 +37,11 @@
 		  portal: {
 			center: {lat: -24.7724195, lng: -65.4128677},
 			population: 8405837
-		  }
+		  },
+		  esquina: {
+			center: {lat: -24.779104, lng: -65.402910},
+			population: 8405837
+		  } 
 		};	
 	
 		function initMap() {
@@ -69,7 +80,7 @@
 					  fillOpacity: 0.35,
 					  map: map,
 					  center: geoFences[fence].center,
-					  radius: 270
+					  radius: 100
 					});
 				}								
 			});			
@@ -101,7 +112,7 @@
 						
 						var distancia = google.maps.geometry.spherical.computeDistanceBetween(fencePoint, position);
 
-						if(distancia<270)
+						if(distancia<100)
 						{
 							alert("yes")
 						}
