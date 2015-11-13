@@ -16,7 +16,9 @@
 	<author href="www.pixelio.com.ar" email="info@pixelio.com.ar">
 	Agustin Cima
 	</author>
-
+	
+	<preference name="android-minSdkVersion" value="14" />
+	
 	<icon src="icon.png" gap:platform="android" gap:density="ldpi" />
 	<icon src="icon.png" gap:platform="android" gap:density="mdpi" />
 	<icon src="icon.png" gap:platform="android" gap:density="hdpi" />
